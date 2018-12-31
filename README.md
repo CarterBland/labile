@@ -28,12 +28,12 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Carter Bland** - *Lead Developer* - [Carter Bland](https://carterbland.com)
+* **[Carter Bland](https://carterbland.com)** - *Lead Developer* -
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the file for details
 
 ## Acknowledgments
