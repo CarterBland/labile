@@ -8,7 +8,14 @@ A blazing fast framework for creating modern user interfaces. Labile is a framew
 ## Getting Started
 
 Install via npm
+```
+$ npm install labile
+```
 
+Then, just add the source script into your page
+```html
+<script src="/example/labile.min.js" type="text/javascript"></script>
+```
 
 ## Documentation
 
@@ -16,7 +23,7 @@ For documentation please visit our [documentation page](https://labile.io/docume
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/CarterBland/labile/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
