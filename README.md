@@ -1,22 +1,15 @@
 # Labile
 
-A blazing fast framework for creating modern user interfaces.
+A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind.
 
 ## Getting Started
 
+Install via npm
 
 
-### Prerequisites
+## Documentation
 
-
-
-### Installing
-
-
-
-## Built With
-
-
+For documentation please visit our [documentation page](https://labile.io/documentation)
 
 ## Contributing
 

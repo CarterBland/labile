@@ -1,7 +1,9 @@
 export default class State {
 	constructor(data) {
+		this.state = {} 
 		if (typeof data === 'object' || data === undefined) {
 			for (let dataKey in data) {
+				console.log(dataKey, data[dataKey])
 				this.buildAttribute(dataKey, data[dataKey])
 			}
 		} else {

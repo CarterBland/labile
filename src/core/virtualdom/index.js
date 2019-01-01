@@ -1,8 +1,8 @@
 export default class VirtualDOM {
 	constructor(root) {
-		this.virtualDOM = (function mapNode(domRoot = 'body') {
+		this.virtualDOM = (function mapNode(domRoot = document.getElementByTagName('body')) {
 			let nodeArray = []
-			for (let node of document.querySelectorAll(domRoot)) {
+			for (let node of domRoot) {
 				if (node.nodeType === 1) {
 					const attributeMap = () => {
 						let attributes = {}
