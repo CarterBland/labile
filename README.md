@@ -1,7 +1,7 @@
 # Labile
-<a href="https://npmcharts.com/compare/vue?minimal=true"><img src="https://img.shields.io/npm/dm/vue.svg" alt="Downloads"></a>
-<a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version"></a>
-<a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+<a href="https://npmcharts.com/compare/labile?minimal=true"><img src="https://img.shields.io/npm/dm/labile.svg" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/v/labile.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/l/labile.svg" alt="License"></a>
 
 A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind.
 
