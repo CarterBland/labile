@@ -1,0 +1,26 @@
+{
+  "name": "labile",
+  "version": "1.0.0",
+  "description": "A simple yet blazing fast framework for front-end web interfaces",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarterBland/labile.git"
+  },
+  "author": "Carter Bland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarterBland/labile/issues"
+  },
+  "homepage": "https://github.com/CarterBland/labile#readme",
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "webpack": "^4.28.3"
+  }
+}
