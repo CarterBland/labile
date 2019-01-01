@@ -12,7 +12,7 @@
     "url": "git+https://github.com/CarterBland/labile.git"
   },
   "author": "Carter Bland",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CarterBland/labile/issues"
   },
