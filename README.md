@@ -1,4 +1,7 @@
 # Labile
+<a href="https://npmcharts.com/compare/vue?minimal=true"><img src="https://img.shields.io/npm/dm/vue.svg" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version"></a>
+<a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
 
 A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind.
 
@@ -30,3 +33,5 @@ See also the list of [contributors](https://github.com/your/project/contributors
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the website for details
 
 ## Acknowledgments
+
+Special thanks to Vue and React for inspiring this framework!
