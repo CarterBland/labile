@@ -27,13 +27,13 @@ Please read [CONTRIBUTING.md](https://github.com/CarterBland/labile/blob/master/
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/CarterBland/labile/tags). 
 
 ## Authors
 
 * **[Carter Bland](https://carterbland.com)** - *Lead Developer* -
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/CarterBland/labile/graphs/contributors) who participated in this project.
 
 ## License
 
