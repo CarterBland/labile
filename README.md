@@ -3,7 +3,7 @@
 <a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/v/labile.svg" alt="Version"></a>
 <a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/l/labile.svg" alt="License"></a>
 
-A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind.
+A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind. We're looking for contributers, so feel free to open a PR!
 
 ## Getting Started
 
