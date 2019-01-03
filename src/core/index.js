@@ -11,21 +11,31 @@ export default class Labile {
 			this.virtualDOM = new VirtualDOM(domRoot)
 		}
 
-		if (typeof this.onChange === "function") { 
-			this.onMountEvent()
-		}
+		(async function() {
+			setTimeout(() => {
+				if (typeof this.onMountEvent === "function") { 
+					this.onMountEvent.bind(this)()
+				}
+			}, 0)
+		}).bind(this)()
 	}
 
 	onMount(func) {
-		func()
+		this.onMountEvent = func
+
+		return this
 	}
 
 	onUpdate(func) {
 		this.onUpdateFunction = func
+
+		return this
 	}
 
 	onUnMount(func) {
 		this.onUnMountFunction = func
+
+		return this
 	}
 
 }
