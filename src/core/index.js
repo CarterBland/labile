@@ -18,6 +18,16 @@ export default class Labile {
 				}
 			}, 0)
 		}).bind(this)()
+
+		console.log(this)
+		this.state._onChange = this.stateChange.bind(this)
+	}
+
+	stateChange() {
+		console.log('alert from state', this.state)
+		if (typeof this.onUpdateEvent === "function") { 
+			this.onUpdateEvent.bind(this)()
+		}
 	}
 
 	onMount(func) {
@@ -27,7 +37,7 @@ export default class Labile {
 	}
 
 	onUpdate(func) {
-		this.onUpdateFunction = func
+		this.onUpdateEvent = func.bind(this)
 
 		return this
 	}

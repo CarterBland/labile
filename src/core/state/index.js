@@ -1,6 +1,5 @@
 export default class State {
 	constructor(data) {
-		this.state = {} 
 		if (typeof data === 'object' || data === undefined) {
 			for (let dataKey in data) {
 				console.log(dataKey, data[dataKey])
@@ -12,14 +11,22 @@ export default class State {
 	}
 
 	buildAttribute(name, value) {
-		this.state['_' + name] = value
+		console.log('hit')
+		this['_' + name] = value
 
-		this.state.__defineGetter__(name, () => {
+		this.__defineGetter__(name, () => {
 			return this['_' + name]
 		})
 
-		this.state.__defineSetter__(name, val => {
+		this.__defineSetter__(name, val => {
+			console.log('state changed, triggering virtual dom update')
+			if (typeof this._onChange === "function") {
+				this._onChange()
+			}
+
 			this['_' + name] = val
 		})
+
+		console.log(this)
 	}
 }
