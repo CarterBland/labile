@@ -1,8 +1,11 @@
 import State from './state'
 import VirtualDOM from './virtualdom'
+import { lifecycles } from '../globals'
 
 export default class Labile {
 	constructor(domRoot, state) {
+		this.buildLifeCycle()
+
 		if (state === undefined) {
 			this.state = new State(domRoot)
 			this.virtualDOM = new VirtualDOM()
@@ -23,29 +26,12 @@ export default class Labile {
 		this.state._onChange = this.stateChange.bind(this)
 	}
 
-	stateChange() {
-		console.log('alert from state', this.state)
-		if (typeof this.onUpdateEvent === "function") { 
-			this.onUpdateEvent.bind(this)()
+	buildLifeCycle() {
+		for (let event of lifecycles) {
+			this['on' + event] = () => {
+				console.log('test')
+			}
 		}
 	}
-
-	onMount(func) {
-		this.onMountEvent = func
-
-		return this
-	}
-
-	onUpdate(func) {
-		this.onUpdateEvent = func.bind(this)
-
-		return this
-	}
-
-	onUnMount(func) {
-		this.onUnMountFunction = func
-
-		return this
-	}
-
+	
 }
