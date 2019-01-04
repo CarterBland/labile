@@ -1,11 +1,10 @@
 # Labile
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee5fd04baefb4c64b712c97f4ea82f50)](https://app.codacy.com/app/CarterBland/labile?utm_source=github.com&utm_medium=referral&utm_content=CarterBland/labile&utm_campaign=Badge_Grade_Dashboard)
-
 <a href="https://npmcharts.com/compare/labile?minimal=true"><img src="https://img.shields.io/npm/dw/labile.svg" alt="Downloads"></a>
 <a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/v/labile.svg" alt="Version"></a>
 <a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/l/labile.svg" alt="License"></a>
 <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="License"></a>
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee5fd04baefb4c64b712c97f4ea82f50)](https://app.codacy.com/app/CarterBland/labile?utm_source=github.com&utm_medium=referral&utm_content=CarterBland/labile&utm_campaign=Badge_Grade_Dashboard)
 
 A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind. We're looking for contributers, so feel free to open a PR! This is a learning project for me, and I hope to find people who want to learn with me while developing something really cool!
 
