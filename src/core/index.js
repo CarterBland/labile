@@ -3,35 +3,41 @@ import VirtualDOM from './virtualdom'
 import { lifecycles } from '../globals'
 
 export default class Labile {
-	constructor(domRoot, state) {
-		this.buildLifeCycle()
+  constructor (obj) {
+    (async function () {
+      setTimeout(() => {
+        this.fireLifeCycle('Mount')
+        this.mounted = true
+      }, 0)
+    }).bind(this)()
 
-		if (state === undefined) {
-			this.state = new State(domRoot)
-			this.virtualDOM = new VirtualDOM()
-		} else {
-			this.state = new State(state)
-			this.virtualDOM = new VirtualDOM(domRoot)
-		}
+    this.buildLifeCycle()
 
-		(async function() {
-			setTimeout(() => {
-				if (typeof this.onMountEvent === "function") { 
-					this.onMountEvent.bind(this)()
-				}
-			}, 0)
-		}).bind(this)()
+    this.state = new State(obj.state)
+    this.state._onChange = () => this.updateComponent()
 
-		console.log(this)
-		this.state._onChange = this.stateChange.bind(this)
-	}
+    this.virtualdom = new VirtualDOM()
+  }
 
-	buildLifeCycle() {
-		for (let event of lifecycles) {
-			this['on' + event] = () => {
-				console.log('test')
-			}
-		}
-	}
-	
+  updateComponent () {
+    if (this.mounted !== undefined) {
+      this.fireLifeCycle('Update')
+    }
+  }
+
+  buildLifeCycle () {
+    for (let event of lifecycles) {
+      this['on' + event] = (func) => {
+        this['on' + event + 'Method'] = func
+
+        return this
+      }
+    }
+  }
+
+  fireLifeCycle (event) {
+    if (typeof this['on' + event + 'Method'] === 'function') {
+      this['on' + event + 'Method']()
+    }
+  }
 }

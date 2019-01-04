@@ -1,5 +1,5 @@
 export const lifecycles = [
-    'mount',
-    'update',
-    'unmount'
+  'Mount',
+  'Update',
+  'Unmount'
 ]

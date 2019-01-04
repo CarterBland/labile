@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: './index.js',
@@ -6,5 +6,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'labile.min.js',
     library: 'Labile'
-  }
-};
+  },
+  watch: false
+}
