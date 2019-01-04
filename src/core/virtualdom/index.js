@@ -6,7 +6,7 @@ export default class VirtualDOM {
         if (node.nodeType === 1) {
           const attributeMap = () => {
             let attributes = {}
-            console.log(node.attributes)
+            
             for (let attribute of node.attributes) {
               attributes[attribute.name] = attribute.value
             }
