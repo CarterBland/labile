@@ -1,7 +1,8 @@
 # Labile
-<a href="https://npmcharts.com/compare/labile?minimal=true"><img src="https://img.shields.io/npm/dm/labile.svg" alt="Downloads"></a>
+<a href="https://npmcharts.com/compare/labile?minimal=true"><img src="https://img.shields.io/npm/dw/labile.svg" alt="Downloads"></a>
 <a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/v/labile.svg" alt="Version"></a>
 <a href="https://www.npmjs.com/package/labile"><img src="https://img.shields.io/npm/l/labile.svg" alt="License"></a>
+<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="License"></a>
 
 A blazing fast framework for creating modern user interfaces. Labile is a framework developed with simplicity in mind. We're looking for contributers, so feel free to open a PR! This is a learning project for me, and I hope to find people who want to learn with me while developing something really cool!
 
