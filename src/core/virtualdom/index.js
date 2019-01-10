@@ -1,6 +1,10 @@
 export default class VirtualDOM {
   constructor (root) {
-    this.virtualDOM = (function mapNode (domRoot = document.getElementsByTagName('body')) {
+    this.virtualDOM = this.mapDOM(root)
+  }
+
+  mapDOM(root) {
+    return (function mapNode (domRoot = document.getElementsByTagName('body')) {
       let nodeArray = []
       for (let node of domRoot) {
         if (node.nodeType === 1) {
@@ -28,4 +32,5 @@ export default class VirtualDOM {
   buildDOMFrom () {
 
   }
+  
 }
