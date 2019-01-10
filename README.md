@@ -39,7 +39,7 @@ HTML Example
 ```html
 <body>
   <h1>You've clicked {{counter}} times</h1>
-  <button onpress={{ incrementCounter() }}></button>
+  <button onclick={{ incrementCounter() }}>Increment</button>
 </body>
 ```
 
