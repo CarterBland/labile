@@ -10,6 +10,7 @@ A blazing fast framework for creating modern user interfaces. Labile is a framew
 
 ## Getting Started
 
+### Installation
 Install via npm
 ```
 $ npm install labile
@@ -19,9 +20,30 @@ Then, just add the source script into your page
 ```html
 <script src="/example/labile.min.js" type="text/javascript"></script>
 ```
+### Usage
+Javascript Example
+```js
+let reactiveComponent = new Labile({
+  root: document.getElementsByTagName('body'),
+  state: {
+    counter: 0
+  }
+})
 
-## Documentation
+function incrementCounter() {
+  reactiveComponent.state.counter++
+}
+```
 
+HTML Example
+```html
+<body>
+  <h1>You've clicked {{counter}} times</h1>
+  <button onpress={{ incrementCounter() }}></button>
+</body>
+```
+
+## Full Documentation
 For documentation please visit our [documentation page](https://labile.io/documentation)
 
 ## Contributing
