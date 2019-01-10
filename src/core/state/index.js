@@ -17,11 +17,11 @@ export default class State {
     })
 
     this.__defineSetter__(name, val => {
+      this['_' + name] = val
+
       if (typeof this._onChange === 'function') {
         this._onChange()
       }
-
-      this['_' + name] = val
     })
   }
 }

@@ -16,13 +16,15 @@ export default class Labile {
     this.state = new State(obj.state)
     this.state._onChange = () => this.updateComponent()
 
-    this.virtualdom = new VirtualDOM()
+    this.virtualdom = new VirtualDOM(obj.root || document.getElementsByTagName('body'), this.state)
   }
 
   updateComponent () {
     if (this.mounted !== undefined) {
       this.fireLifeCycle('Update')
     }
+
+    let newDOM = this.virtualdom.buildDOM(this.state)
   }
 
   buildLifeCycle () {

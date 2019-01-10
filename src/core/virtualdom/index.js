@@ -1,13 +1,17 @@
 export default class VirtualDOM {
-  constructor (root) {
+  constructor (root, state) {
+    this.root = root
     this.virtualDOM = this.mapDOM(root)
+
+    this.buildDOM(state)
   }
 
   mapDOM(root) {
     return (function mapNode (domRoot = document.getElementsByTagName('body')) {
-      let nodeArray = []
+      const nodeArray = []
+      const literals = []
       for (let node of domRoot) {
-        if (node.nodeType === 1) {
+        if (node.nodeType === 1 && node.nodeName !== 'SCRIPT') {
           const attributeMap = () => {
             let attributes = {}
             
@@ -23,14 +27,55 @@ export default class VirtualDOM {
             attributes: attributeMap(),
             children: node.childNodes.length ? mapNode(node.childNodes) : []
           })
+        } else {
+          if (node.nodeType === 3) {
+            nodeArray.push({
+              type: '#text',
+              text: node.nodeValue
+            })
+          }
         }
       }
       return nodeArray
-    })(root)[0]
+    })(root)
   }
 
-  buildDOMFrom () {
+  buildDOM (state) {
+    let docFrag = (function buildHTML(root, vDOM) {
+      for (let element of vDOM) {
+        if (element.type !== '#text') {
+          let newElement = document.createElement(element.type)
+          
+          for (let key of Object.keys(element.attributes)) {
+            newElement.setAttribute(key, element.attributes[key])
+          }
 
+          newElement = buildHTML(newElement, element.children)
+          newElement.normalize()
+          root.appendChild(newElement)
+        } else {
+          let newTextElement = document.createTextNode(element.text)
+          root.appendChild(newTextElement)
+        }
+      }
+
+      return root
+    })(document.createDocumentFragment(), this.virtualDOM[0].children);
+
+
+    window.requestAnimationFrame(() => {
+      this.root[0].innerHTML = ""
+      this.root[0].appendChild(docFrag)
+    })
+
+    for(let key of Object.keys(state)) {
+      if (key[0] !== '_') {
+        window.requestAnimationFrame(() => {
+          this.root[0].innerHTML = this.root[0].innerHTML.replace(new RegExp('\{{2}\ ?' + key +' \ ?\}{2}', 'g'), state[key])
+        })
+      }
+    }
+  
   }
   
 }

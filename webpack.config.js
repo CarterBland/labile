@@ -7,5 +7,5 @@ module.exports = {
     filename: 'labile.min.js',
     library: 'Labile'
   },
-  watch: false
+  watch: true
 }
