@@ -65,14 +65,17 @@ export default class VirtualDOM {
     window.requestAnimationFrame(() => {
       this.root[0].innerHTML = ''
       this.root[0].appendChild(docFrag)
+
+      let newHTML = this.root[0].innerHTML
+
+      for (let key of Object.keys(state)) {
+        if (key[0] !== '_') {
+          newHTML = newHTML.replace(new RegExp('{{2} ?' + key + '  ?}{2}', 'g'), state[key])
+        }
+      }
+
+      this.root[0].innerHTML = newHTML
     })
 
-    for (let key of Object.keys(state)) {
-      if (key[0] !== '_') {
-        window.requestAnimationFrame(() => {
-          this.root[0].innerHTML = this.root[0].innerHTML.replace(new RegExp('{{2} ?' + key + '  ?}{2}', 'g'), state[key])
-        })
-      }
-    }
   }
 }
