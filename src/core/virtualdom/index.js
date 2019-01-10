@@ -6,15 +6,15 @@ export default class VirtualDOM {
     this.buildDOM(state)
   }
 
-  mapDOM(root) {
+  mapDOM (root) {
     return (function mapNode (domRoot = document.getElementsByTagName('body')) {
       const nodeArray = []
-      const literals = []
+
       for (let node of domRoot) {
         if (node.nodeType === 1 && node.nodeName !== 'SCRIPT') {
           const attributeMap = () => {
             let attributes = {}
-            
+
             for (let attribute of node.attributes) {
               attributes[attribute.name] = attribute.value
             }
@@ -41,11 +41,11 @@ export default class VirtualDOM {
   }
 
   buildDOM (state) {
-    let docFrag = (function buildHTML(root, vDOM) {
+    let docFrag = (function buildHTML (root, vDOM) {
       for (let element of vDOM) {
         if (element.type !== '#text') {
           let newElement = document.createElement(element.type)
-          
+
           for (let key of Object.keys(element.attributes)) {
             newElement.setAttribute(key, element.attributes[key])
           }
@@ -60,22 +60,19 @@ export default class VirtualDOM {
       }
 
       return root
-    })(document.createDocumentFragment(), this.virtualDOM[0].children);
-
+    })(document.createDocumentFragment(), this.virtualDOM[0].children)
 
     window.requestAnimationFrame(() => {
-      this.root[0].innerHTML = ""
+      this.root[0].innerHTML = ''
       this.root[0].appendChild(docFrag)
     })
 
-    for(let key of Object.keys(state)) {
+    for (let key of Object.keys(state)) {
       if (key[0] !== '_') {
         window.requestAnimationFrame(() => {
-          this.root[0].innerHTML = this.root[0].innerHTML.replace(new RegExp('\{{2}\ ?' + key +' \ ?\}{2}', 'g'), state[key])
+          this.root[0].innerHTML = this.root[0].innerHTML.replace(new RegExp('{{2} ?' + key + '  ?}{2}', 'g'), state[key])
         })
       }
     }
-  
   }
-  
 }

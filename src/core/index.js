@@ -24,7 +24,7 @@ export default class Labile {
       this.fireLifeCycle('Update')
     }
 
-    let newDOM = this.virtualdom.buildDOM(this.state)
+    this.virtualdom.buildDOM(this.state)
   }
 
   buildLifeCycle () {
