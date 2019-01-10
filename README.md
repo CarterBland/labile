@@ -43,6 +43,8 @@ HTML Example
 </body>
 ```
 
+GIF in all it's primitiveness
+![Example GIF](https://i.gyazo.com/ca8f16ee97c33df9a7f2ee9347fcef83.gif)
 ## Full Documentation
 For documentation please visit our [documentation page](https://labile.io/documentation)
 
