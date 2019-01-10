@@ -1,7 +1,7 @@
 export default class VirtualDOM {
   constructor (root, state) {
     this.root = root
-    this.virtualDOM = this.mapDOM(root)
+    this.templateDOM = this.mapDOM(root)
 
     this.buildDOM(state)
   }
@@ -76,6 +76,6 @@ export default class VirtualDOM {
 
       this.root[0].innerHTML = newHTML
     })
-
   }
+  
 }
