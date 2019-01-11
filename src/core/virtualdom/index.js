@@ -1,7 +1,9 @@
 export default class VirtualDOM {
   constructor (root, state) {
     this.root = root
-    this.templateDOM = this.mapDOM(root)
+
+    // Source of truth
+    this.sotDOM = this.mapDOM(root)
 
     this.buildDOM(state)
   }
