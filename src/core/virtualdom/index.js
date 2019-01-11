@@ -17,11 +17,12 @@ export default class VirtualDOM {
   }
 
   mapDOM (root) {
+    root.constructor.name === 'HTMLCollection' ? root[0].normalize() : root.normalize()
+
     return (function mapNode (domRoot = document.getElementsByTagName('body')) {
       const nodeArray = []
 
       for (let node of domRoot) {
-        node.normalize()
         if (node.nodeType === 1 && node.nodeName !== 'SCRIPT') {
           const attributeMap = () => {
             let attributes = {}
