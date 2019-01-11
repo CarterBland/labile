@@ -1,10 +1,18 @@
 export default class VirtualDOM {
   constructor (root, state) {
+    // Sets our root, this is what we're going to be patching
     this.root = root
+
+    // Sets our state
+    this.state = state
 
     // Source of truth
     this.sotDOM = this.mapDOM(root)
 
+    // Current DOM
+    this.currentVirtualDOM = []
+
+    // Triggers an automatic rerender, super inefficient but for first load, who cares.
     this.buildDOM(state)
   }
 
@@ -13,6 +21,7 @@ export default class VirtualDOM {
       const nodeArray = []
 
       for (let node of domRoot) {
+        node.normalize()
         if (node.nodeType === 1 && node.nodeName !== 'SCRIPT') {
           const attributeMap = () => {
             let attributes = {}
@@ -42,7 +51,53 @@ export default class VirtualDOM {
     })(root)
   }
 
+  replaceState (text) {
+    for (let key of Object.keys(this.state)) {
+      if (key[0] !== '_') {
+        text = text.replace(new RegExp('{{2} ?' + key + ' ?}{2}', 'g'), this.state[key])
+      }
+    }
+
+    return text
+  }
+
+  buildNewVirtualDOM () {
+    this.currentVirtualDOM = function applyState (root) {
+      const nodeArray = []
+
+      for (let node of root) {
+        if (node.type !== '#text') {
+          const attributeMap = () => {
+            let attributes = {}
+
+            for (let attribute of Object.keys(node.attributes)) {
+              attributes[this.replaceState(attribute)] = this.replaceState(node.attributes[attribute])
+            }
+
+            return attributes
+          }
+
+          nodeArray.push({
+            type: node.type,
+            attributes: attributeMap(),
+            children: applyState.bind(this)(node.children, {})
+          })
+        } else {
+          nodeArray.push({
+            type: node.type,
+            text: this.replaceState(node.text)
+          })
+        }
+      }
+
+      return nodeArray
+    }.bind(this)(this.sotDOM)
+
+    return this.currentVirtualDOM
+  }
+
   buildDOM (state) {
+    this.state = state
     let docFrag = (function buildHTML (root, vDOM) {
       for (let element of vDOM) {
         if (element.type !== '#text') {
@@ -62,7 +117,7 @@ export default class VirtualDOM {
       }
 
       return root
-    })(document.createDocumentFragment(), this.virtualDOM[0].children)
+    })(document.createDocumentFragment(), this.buildNewVirtualDOM()[0].children)
 
     window.requestAnimationFrame(() => {
       this.root[0].innerHTML = ''
@@ -70,14 +125,7 @@ export default class VirtualDOM {
 
       let newHTML = this.root[0].innerHTML
 
-      for (let key of Object.keys(state)) {
-        if (key[0] !== '_') {
-          newHTML = newHTML.replace(new RegExp('{{2} ?' + key + '  ?}{2}', 'g'), state[key])
-        }
-      }
-
       this.root[0].innerHTML = newHTML
     })
   }
-  
 }
