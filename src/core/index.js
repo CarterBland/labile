@@ -1,9 +1,11 @@
-import State from './state'
+import StateObject from './state'
 import VirtualDOM from './virtualdom'
 import { lifecycles } from '../globals'
 
-export default class Labile {
+export default class Labile extends StateObject {
   constructor (obj) {
+    super(obj.state);
+
     (async function () {
       setTimeout(() => {
         this.fireLifeCycle('Mount')
@@ -13,10 +15,7 @@ export default class Labile {
 
     this.buildLifeCycle()
 
-    this.state = new State(obj.state)
-    this.state._onChange = () => this.updateComponent()
-
-    this.virtualdom = new VirtualDOM(obj.root || document.getElementsByTagName('body'), this.state)
+    this.virtualdom = new VirtualDOM(obj.root || null, this.getStateObject())
   }
 
   updateComponent () {
@@ -24,7 +23,7 @@ export default class Labile {
       this.fireLifeCycle('Update')
     }
 
-    this.virtualdom.buildDOM(this.state)
+    this.virtualdom.buildDOM(this.getStateObject())
   }
 
   buildLifeCycle () {

@@ -1,18 +1,13 @@
 export default class VirtualDOM {
   constructor (root, state) {
-    // Sets our root, this is what we're going to be patching
     this.root = root
 
-    // Sets our state
     this.state = state
 
-    // Source of truth
     this.sotDOM = this.mapDOM(root)
 
-    // Current DOM
     this.currentVirtualDOM = []
 
-    // Triggers an automatic rerender, super inefficient but for first load, who cares.
     this.buildDOM(state)
   }
 
