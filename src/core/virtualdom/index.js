@@ -1,50 +1,22 @@
+import Maps from './maps.js'
+
 export default class VirtualDOM {
   constructor (root, state) {
     this.root = root
 
     this.state = state
 
-    this.sotDOM = this.mapDOM(root)
+    this.sotDOM = this.generateVDOM(root)
 
     this.currentVirtualDOM = []
 
     this.buildDOM(state)
   }
 
-  mapDOM (root) {
+  generateVDOM (root) {
     root.constructor.name === 'HTMLCollection' ? root[0].normalize() : root.normalize()
 
-    return (function mapNode (domRoot = document.getElementsByTagName('body')) {
-      const nodeArray = []
-
-      for (let node of domRoot) {
-        if (node.nodeType === 1 && node.nodeName !== 'SCRIPT') {
-          const attributeMap = () => {
-            let attributes = {}
-
-            for (let attribute of node.attributes) {
-              attributes[attribute.name] = attribute.value
-            }
-
-            return attributes
-          }
-
-          nodeArray.push({
-            type: node.nodeName,
-            attributes: attributeMap(),
-            children: node.childNodes.length ? mapNode(node.childNodes) : []
-          })
-        } else {
-          if (node.nodeType === 3) {
-            nodeArray.push({
-              type: '#text',
-              text: node.nodeValue
-            })
-          }
-        }
-      }
-      return nodeArray
-    })(root)
+    return Maps.mapNodes(root)
   }
 
   replaceState (text) {
@@ -57,37 +29,10 @@ export default class VirtualDOM {
     return text
   }
 
-  buildNewVirtualDOM () {
-    this.currentVirtualDOM = function applyState (root) {
-      const nodeArray = []
+  mapVDomWithState () {
+    this.currentVirtualDOM = Maps.mapVDOM(this.sotDOM, this.state)
 
-      for (let node of root) {
-        if (node.type !== '#text') {
-          const attributeMap = () => {
-            let attributes = {}
-
-            for (let attribute of Object.keys(node.attributes)) {
-              attributes[this.replaceState(attribute)] = this.replaceState(node.attributes[attribute])
-            }
-
-            return attributes
-          }
-
-          nodeArray.push({
-            type: node.type,
-            attributes: attributeMap(),
-            children: applyState.bind(this)(node.children, {})
-          })
-        } else {
-          nodeArray.push({
-            type: node.type,
-            text: this.replaceState(node.text)
-          })
-        }
-      }
-
-      return nodeArray
-    }.bind(this)(this.sotDOM)
+    console.log(this.currentVirtualDOM)
 
     return this.currentVirtualDOM
   }
@@ -113,7 +58,7 @@ export default class VirtualDOM {
       }
 
       return root
-    })(document.createDocumentFragment(), this.buildNewVirtualDOM()[0].children)
+    })(document.createDocumentFragment(), this.mapVDomWithState()[0].children)
 
     window.requestAnimationFrame(() => {
       this.root[0].innerHTML = ''
