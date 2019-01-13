@@ -66,4 +66,29 @@ export default class Maps {
 
     return nodeArray
   }
+
+  static mapHTML (vDOM, root = null) {
+    if (root === null) {
+      root = document.createDocumentFragment()
+    }
+
+    for (let element of vDOM) {
+      if (element.type !== '#text') {
+        let newElement = document.createElement(element.type)
+
+        for (let key of Object.keys(element.attributes)) {
+          newElement.setAttribute(key, element.attributes[key])
+        }
+
+        newElement = this.mapHTML(element.children, newElement)
+        newElement.normalize()
+        root.appendChild(newElement)
+      } else {
+        let newTextElement = document.createTextNode(element.text)
+        root.appendChild(newTextElement)
+      }
+    }
+
+    return root
+  }
 }
