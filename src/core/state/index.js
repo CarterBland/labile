@@ -38,7 +38,7 @@ export default class StateObject {
 
     for (let prop of Object.keys(object)) {
       if (prop[0] === '_') {
-        if (typeof object[prop] === 'object') {
+        if (typeof object[prop] === 'object' && object[prop] !== null) {
           stateObject[prop.replace('_', '')] = this.getStateObject(object[prop])
         } else {
           stateObject[prop.replace('_', '')] = object[prop]
